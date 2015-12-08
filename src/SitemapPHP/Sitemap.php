@@ -174,7 +174,7 @@ class Sitemap {
 	 * Adds an item to sitemap
 	 *
 	 * @param string $loc URL of the page. This value must be less than 2,048 characters. 
-	 * @param string $priority The priority of this URL relative to other URLs on your site. Valid values range from 0.0 to 1.0.
+	 * @param string $priority The priority of this URL relative to other URLs on your site. Valid values range from 0.0 to 1.0. If null then value will be skiped in xml
 	 * @param string $changefreq How frequently the page is likely to change. Valid values are always, hourly, daily, weekly, monthly, yearly and never.
 	 * @param string|int $lastmod The date of last modification of url. Unix timestamp or any English textual datetime description.
 	 * @return Sitemap
@@ -190,7 +190,8 @@ class Sitemap {
 		$this->incCurrentItem();
 		$this->getWriter()->startElement('url');
 		$this->getWriter()->writeElement('loc', $this->getDomain() . $loc);
-		$this->getWriter()->writeElement('priority', $priority);
+        if (!is_null($priority))
+		    $this->getWriter()->writeElement('priority', $priority);
 		if ($changefreq)
 			$this->getWriter()->writeElement('changefreq', $changefreq);
 		if ($lastmod)
