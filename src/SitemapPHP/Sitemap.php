@@ -43,6 +43,21 @@ class Sitemap {
 	}
 
 	/**
+	 *
+	 */
+	public function __destruct()
+	{
+		try {
+            if ($this->getWriter()) {
+                $this->getWriter()->endElement();
+                $this->getWriter()->endDocument();
+            }
+		} catch ( \Exception $e) {
+			return;
+		}
+	}
+
+	/**
 	 * Sets root path of the website, starting with http:// or https://
 	 *
 	 * @param string $domain
