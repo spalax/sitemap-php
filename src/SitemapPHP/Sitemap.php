@@ -234,7 +234,7 @@ class Sitemap {
 	 * Finalizes tags of sitemap XML document.
 	 *
 	 */
-	private function endSitemap() {
+	public function endSitemap() {
 		if (!$this->getWriter()) {
 			$this->startSitemap();
 		}
